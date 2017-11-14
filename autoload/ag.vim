@@ -72,7 +72,7 @@ function! ag#AgBuffer(cmd, args)
   call ag#Ag(a:cmd, a:args . ' ' . join(l:files, ' '))
 endfunction
 
-function! ag#Ag(cmd, args)
+function! ag#Ag(cmd, args, noloc)
   let l:ag_executable = get(split(g:ag_prg, " "), 0)
 
   " Ensure that `ag` is installed
@@ -132,6 +132,13 @@ function! ag#Ag(cmd, args)
     let &t_ti=l:t_ti_bak
     let &t_te=l:t_te_bak
   endtry
+
+  " Don't populate location window (open the first result)
+  " Works with AgNoLoc command instead of Ag
+  if a:noloc == 1
+    redraw!
+    return
+  endif
 
   if a:cmd =~# '^l'
     let l:match_count = len(getloclist(winnr()))
