@@ -172,7 +172,7 @@ function! ag#Ag(cmd, args, noloc)
       nnoremap <silent> <buffer> <C-r>  <C-w><CR><C-w>TgT<C-W><C-W>
       nnoremap <silent> <buffer> <C-v>  <C-w><CR><C-w>L<C-w>h<C-w>j<C-w>J6<C-w>-<C-w>k10<C-w>l
 
-      exe 'nnoremap <silent> <buffer> e <CR><C-w><C-w>:' . l:matches_window_prefix .'close<CR>'
+      exe 'nnoremap <silent> <buffer> o <CR><C-w><C-w>:' . l:matches_window_prefix .'close<CR>'
       exe 'nnoremap <silent> <buffer> go <CR>:' . l:matches_window_prefix . 'open<CR>'
       exe 'nnoremap <silent> <buffer> q  :' . l:matches_window_prefix . 'close<CR>'
 
