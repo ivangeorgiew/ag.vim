@@ -167,8 +167,8 @@ function! ag#Ag(cmd, args, noloc)
   if l:match_count
     if l:apply_mappings
       nnoremap <silent> <buffer> <C-x>  <C-W><CR><C-w>k<C-w>J<C-w>k
-      nnoremap <silent> <buffer> <C-t>  <C-w><CR><C-w>T
-      nnoremap <silent> <buffer> <C-r>  <C-w><CR><C-w>TgT<C-W><C-W>
+      nnoremap <silent> <buffer> <C-t>  :let b:height=winheight(0)<CR><C-w><CR><C-w>TgT<C-w>j:exe printf(":normal %d\<lt>c-w>_", b:height)<CR>gt
+      nnoremap <silent> <buffer> <C-r>  :let b:height=winheight(0)<CR><C-w><CR><C-w>TgT<C-w>j:exe printf(":normal %d\<lt>c-w>_", b:height)<CR>
       nnoremap <silent> <buffer> <C-v>  :let b:height=winheight(0)<CR><C-w><CR><C-w>L<C-w>h<C-w>j<C-w>J:exe printf(":normal %d\<lt>c-w>_", b:height)<CR><C-w>k10<C-w>l
 
       exe 'nnoremap <silent> <buffer> o <CR><C-w><C-w>:' . l:matches_window_prefix .'close<CR>'
@@ -180,10 +180,6 @@ function! ag#Ag(cmd, args, noloc)
       " :copen<CR> -or- :lopen<CR>                          Open either the quickfix window or the location list (whichever we were using)
       " <C-w>J                                              Slam the quickfix/location list window against the bottom edge
       " :exe printf(":normal %d\<lt>c-w>_", b:height)<CR>   Restore the quickfix/location list window's height from before we opened the match
-
-      " if g:ag_mapping_message && l:apply_mappings
-      "   echom "ag.vim keys: q=quit <cr>/<c-t>/<c-x>/<c-v>=enter/tab/split/vsplit"
-      " endif
     endif
   else " Close the split window automatically:
     cclose
