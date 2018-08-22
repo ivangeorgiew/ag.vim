@@ -166,10 +166,11 @@ function! ag#Ag(cmd, args, noloc)
 
   if l:match_count
     if l:apply_mappings
-      nnoremap <silent> <buffer> <C-x>  <C-W><CR><C-w>k<C-w>J<C-w>k
-      nnoremap <silent> <buffer> <C-t>  :let b:height=winheight(0)<CR><C-w><CR><C-w>TgT<C-w>j:exe printf(":normal %d\<lt>c-w>_", b:height)<CR>gt
-      nnoremap <silent> <buffer> <C-r>  :let b:height=winheight(0)<CR><C-w><CR><C-w>TgT<C-w>j:exe printf(":normal %d\<lt>c-w>_", b:height)<CR>
-      nnoremap <silent> <buffer> <C-v>  :let b:height=winheight(0)<CR><C-w><CR><C-w>L<C-w>h<C-w>j<C-w>J:exe printf(":normal %d\<lt>c-w>_", b:height)<CR><C-w>k10<C-w>l
+      nnoremap <silent> <buffer> <CR>   <CR>:silent! normal! zv<CR>
+      nnoremap <silent> <buffer> <C-x>  <C-W><CR><C-w>k<C-w>J<C-w>k:silent! normal! zv<CR>
+      nnoremap <silent> <buffer> <C-t>  :let b:height=winheight(0)<CR><C-w><CR><C-w>TgT<C-w>j:exe printf(":normal %d\<lt>c-w>_", b:height)<CR>gt:silent! normal! zv<CR>
+      nnoremap <silent> <buffer> <C-r>  :let b:height=winheight(0)<CR><C-w><CR><C-w>TgT<C-w>j:exe printf(":normal %d\<lt>c-w>_", b:height)<CR>:silent! normal! zv<CR>
+      nnoremap <silent> <buffer> <C-v>  :let b:height=winheight(0)<CR><C-w><CR><C-w>L<C-w>h<C-w>j<C-w>J:exe printf(":normal %d\<lt>c-w>_", b:height)<CR><C-w>k10<C-w>l:silent! normal! zv<CR>
 
       exe 'nnoremap <silent> <buffer> o <CR><C-w><C-w>:' . l:matches_window_prefix .'close<CR>'
       exe 'nnoremap <silent> <buffer> q  :' . l:matches_window_prefix . 'close<CR>'
